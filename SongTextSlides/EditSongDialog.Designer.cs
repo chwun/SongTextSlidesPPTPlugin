@@ -124,6 +124,7 @@ namespace SongTextSlides
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.DarkGray;
+			this.CancelButton = this.ButtonCancel;
 			this.ClientSize = new System.Drawing.Size(617, 549);
 			this.Controls.Add(this.ButtonOk);
 			this.Controls.Add(this.TextBoxSongText);
@@ -133,10 +134,12 @@ namespace SongTextSlides
 			this.Controls.Add(this.TextBoxSongTitle);
 			this.Controls.Add(this.LabelSongTitle);
 			this.Controls.Add(this.ButtonCancel);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "EditSongDialog";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Lied bearbeiten";
 			this.ResumeLayout(false);
 			this.PerformLayout();

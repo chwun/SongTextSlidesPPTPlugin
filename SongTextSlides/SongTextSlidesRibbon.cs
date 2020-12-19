@@ -17,5 +17,11 @@ namespace SongTextSlides
 		private void ButtonSelectSong_Click(object sender, RibbonControlEventArgs e)
 		{
 		}
+
+		private void ButtonInfo_Click(object sender, RibbonControlEventArgs e)
+		{
+			InfoDialog infoDialog = new InfoDialog();
+			infoDialog.ShowDialog();
+		}
 	}
 }
