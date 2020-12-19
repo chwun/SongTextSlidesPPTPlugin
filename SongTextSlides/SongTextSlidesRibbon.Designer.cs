@@ -39,11 +39,11 @@ namespace SongTextSlides
 			this.tab1 = this.Factory.CreateRibbonTab();
 			this.tab2 = this.Factory.CreateRibbonTab();
 			this.group1 = this.Factory.CreateRibbonGroup();
+			this.group3 = this.Factory.CreateRibbonGroup();
+			this.group2 = this.Factory.CreateRibbonGroup();
 			this.ButtonNewSong = this.Factory.CreateRibbonButton();
 			this.ButtonSelectSong = this.Factory.CreateRibbonButton();
-			this.group3 = this.Factory.CreateRibbonGroup();
 			this.ButtonSettings = this.Factory.CreateRibbonButton();
-			this.group2 = this.Factory.CreateRibbonGroup();
 			this.ButtonHelp = this.Factory.CreateRibbonButton();
 			this.ButtonInfo = this.Factory.CreateRibbonButton();
 			this.tab1.SuspendLayout();
@@ -74,6 +74,17 @@ namespace SongTextSlides
 			this.group1.Label = "Liedtext";
 			this.group1.Name = "group1";
 			// 
+			// group3
+			// 
+			this.group3.Items.Add(this.ButtonSettings);
+			this.group3.Name = "group3";
+			// 
+			// group2
+			// 
+			this.group2.Items.Add(this.ButtonHelp);
+			this.group2.Items.Add(this.ButtonInfo);
+			this.group2.Name = "group2";
+			// 
 			// ButtonNewSong
 			// 
 			this.ButtonNewSong.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -95,11 +106,6 @@ namespace SongTextSlides
 			this.ButtonSelectSong.ShowImage = true;
 			this.ButtonSelectSong.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonSelectSong_Click);
 			// 
-			// group3
-			// 
-			this.group3.Items.Add(this.ButtonSettings);
-			this.group3.Name = "group3";
-			// 
 			// ButtonSettings
 			// 
 			this.ButtonSettings.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -108,12 +114,6 @@ namespace SongTextSlides
 			this.ButtonSettings.Label = "Einstellungen";
 			this.ButtonSettings.Name = "ButtonSettings";
 			this.ButtonSettings.ShowImage = true;
-			// 
-			// group2
-			// 
-			this.group2.Items.Add(this.ButtonHelp);
-			this.group2.Items.Add(this.ButtonInfo);
-			this.group2.Name = "group2";
 			// 
 			// ButtonHelp
 			// 

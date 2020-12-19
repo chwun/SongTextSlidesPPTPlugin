@@ -166,8 +166,9 @@
       <DependentUpon>EditSongDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\SlideCreation.cs" />
+    <Compile Include="Logic\SongTextSerializer.cs" />
     <Compile Include="Logic\SongTextParser.cs" />
-    <Compile Include="Logic\SongTextValidator.cs" />
+    <Compile Include="Logic\SongValidator.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Models\SongPart.cs" />

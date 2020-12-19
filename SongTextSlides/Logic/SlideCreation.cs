@@ -5,12 +5,19 @@ using System;
 
 namespace SongTextSlides.Logic
 {
+	/// <summary>
+	/// Class for creating slides
+	/// </summary>
 	public class SlideCreation
 	{
 		private readonly Presentation presentation;
 
 		#region constructors
 
+		/// <summary>
+		/// Creates a new instance of <see cref="SlideCreation"/>
+		/// </summary>
+		/// <param name="presentation">presentation file for slide creation</param>
 		public SlideCreation(Presentation presentation)
 		{
 			this.presentation = presentation;
@@ -20,6 +27,12 @@ namespace SongTextSlides.Logic
 
 		#region public methods
 
+		/// <summary>
+		/// Creates slides for the given song
+		/// </summary>
+		/// <param name="song">song to create slides for</param>
+		/// <param name="errorMessage">error message, if not successful</param>
+		/// <returns>true, if slide creation was successful</returns>
 		public bool CreateSlidesForSong(Song song, out string errorMessage)
 		{
 			if (!GetCustomLayouts(out var layoutTitle, out var layoutLyrics, out var layoutBlank))
@@ -46,6 +59,13 @@ namespace SongTextSlides.Logic
 
 		#region private methods
 
+		/// <summary>
+		/// Gets the needed custom slide layouts
+		/// </summary>
+		/// <param name="layoutTitle">layout for song title slide</param>
+		/// <param name="layoutLyrics">layout for lyrics slide</param>
+		/// <param name="layoutBlank">layout for blank slide</param>
+		/// <returns></returns>
 		private bool GetCustomLayouts(out CustomLayout layoutTitle, out CustomLayout layoutLyrics, out CustomLayout layoutBlank)
 		{
 			layoutTitle = null;
@@ -84,6 +104,14 @@ namespace SongTextSlides.Logic
 			}
 		}
 
+		/// <summary>
+		/// Adds all slides for the given song
+		/// </summary>
+		/// <param name="song">song</param>
+		/// <param name="layoutTitle">layout for song title slide</param>
+		/// <param name="layoutLyrics">layout for lyrics slide</param>
+		/// <param name="layoutBlank">layout for blank slide</param>
+		/// <returns>true, if successful</returns>
 		private bool AddSlides(Song song, CustomLayout layoutTitle, CustomLayout layoutLyrics, CustomLayout layoutBlank)
 		{
 			try
@@ -102,15 +130,26 @@ namespace SongTextSlides.Logic
 			}
 		}
 
+		/// <summary>
+		/// Adds title slide
+		/// </summary>
+		/// <param name="song">song</param>
+		/// <param name="layoutTitle">layout for song title slide</param>
 		private void AddTitleSlide(Song song, CustomLayout layoutTitle)
 		{
 			int newSlideNumber = presentation.Slides.Count + 1; // no index, starts at 1
 
 			Slide slideTitle = presentation.Slides.AddSlide(newSlideNumber, layoutTitle);
 			slideTitle.Shapes.Placeholders[1].TextFrame.TextRange.Text = song.Title;
-			slideTitle.Shapes.Placeholders[2].TextFrame.TextRange.Text = song.CopyrightInfos;
+			slideTitle.Shapes.Placeholders[2].TextFrame.TextRange.Text = song.CopyrightInfo;
 		}
 
+		/// <summary>
+		/// Adds slides for all song parts (lyrics and blank slides)
+		/// </summary>
+		/// <param name="song">song</param>
+		/// <param name="layoutLyrics">layout for lyrics slide</param>
+		/// <param name="layoutBlank">layout for blank slide</param>
 		private void AddSongPartSlides(Song song, CustomLayout layoutLyrics, CustomLayout layoutBlank)
 		{
 			int newSlideNumber = presentation.Slides.Count + 1; // no index, starts at 1

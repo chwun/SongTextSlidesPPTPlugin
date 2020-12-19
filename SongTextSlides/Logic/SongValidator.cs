@@ -7,21 +7,41 @@ using System.Text;
 
 namespace SongTextSlides.Logic
 {
-	public class SongTextValidator
+	/// <summary>
+	/// Class for validating a song
+	/// </summary>
+	public class SongValidator
 	{
 		private readonly string title;
-		private readonly string copyrightInfos;
+		private readonly string copyrightInfo;
 		private readonly string text;
 		private List<string> textLines;
 
-		public SongTextValidator(string title, string copyrightInfos, string text)
+		#region constructors
+
+		/// <summary>
+		/// Creates a new instance of <see cref="SongValidator"/>
+		/// </summary>
+		/// <param name="title">song title</param>
+		/// <param name="copyrightInfo">copyright information</param>
+		/// <param name="text">song text</param>
+		public SongValidator(string title, string copyrightInfo, string text)
 		{
 			this.title = title;
-			this.copyrightInfos = copyrightInfos;
+			this.copyrightInfo = copyrightInfo;
 			this.text = text;
 			InitTextLines();
 		}
 
+		#endregion constructors
+
+		#region public methods
+
+		/// <summary>
+		/// Validates the song
+		/// </summary>
+		/// <param name="errorMessage">error message, if not successful</param>
+		/// <returns>true, if validation finished without errors</returns>
 		public bool Validate(out string errorMessage)
 		{
 			if (!InitTextLines())
@@ -41,6 +61,14 @@ namespace SongTextSlides.Logic
 			return isValid;
 		}
 
+		#endregion public methods
+
+		#region private methods
+
+		/// <summary>
+		/// Initializes an internally used list of text lines to avoid unnecessary parsing
+		/// </summary>
+		/// <returns>true, if successful</returns>
 		private bool InitTextLines()
 		{
 			try
@@ -59,6 +87,11 @@ namespace SongTextSlides.Logic
 			}
 		}
 
+		/// <summary>
+		/// Checks for mandatory fields which are empty
+		/// </summary>
+		/// <param name="sb">string builder for validation errors</param>
+		/// <returns>true, if validation finished without errors</returns>
 		private bool CheckEmptyFields(StringBuilder sb)
 		{
 			bool isValid = true;
@@ -69,7 +102,7 @@ namespace SongTextSlides.Logic
 				sb.AppendLine("Liedtitel darf nicht leer sein");
 			}
 
-			if (string.IsNullOrWhiteSpace(copyrightInfos))
+			if (string.IsNullOrWhiteSpace(copyrightInfo))
 			{
 				isValid = false;
 				sb.AppendLine("Copyright-Informationen dürfen nicht leer sein");
@@ -84,21 +117,30 @@ namespace SongTextSlides.Logic
 			return isValid;
 		}
 
+		/// <summary>
+		/// Checks the song text
+		/// </summary>
+		/// <param name="sb">string builder for validation errors</param>
+		/// <returns>true, if validation finished without errors</returns>
 		private bool CheckText(StringBuilder sb)
 		{
 			bool isValid = true;
 
-			isValid &= CheckTextNumberOfLinesPerSlide(sb);
+			isValid &= CheckTextNumberOfLinesPerBlock(sb);
 			isValid &= CheckTextBlankSlides(sb);
 
 			return isValid;
 		}
 
-		private bool CheckTextNumberOfLinesPerSlide(StringBuilder sb)
+		/// <summary>
+		/// Checks the number of text lines per block.
+		/// Each slide has a fixed maximum number of text lines.
+		/// </summary>
+		/// <param name="sb">string builder for validation errors</param>
+		/// <returns>true, if validation finished without errors</returns>
+		private bool CheckTextNumberOfLinesPerBlock(StringBuilder sb)
 		{
 			bool isValid = true;
-
-			// each slide has a maximum number of text lines
 
 			int linesPerSlide = 0;
 			for (int i = 0; i < textLines.Count; i++)
@@ -124,11 +166,15 @@ namespace SongTextSlides.Logic
 			return isValid;
 		}
 
+		/// <summary>
+		/// Checks blank song parts.
+		/// Placeholder for blank slides is only allowed on single lines (empty line before and after is needed).
+		/// </summary>
+		/// <param name="sb">string builder for validation errors</param>
+		/// <returns>true, if validation finished without errors</returns>
 		private bool CheckTextBlankSlides(StringBuilder sb)
 		{
 			bool isValid = true;
-
-			// placeholder for blank slides is only allowed on single lines (empty line before and after is needed)
 
 			for (int i = 0; i < textLines.Count; i++)
 			{
@@ -148,5 +194,7 @@ namespace SongTextSlides.Logic
 
 			return isValid;
 		}
+
+		#endregion private methods
 	}
 }

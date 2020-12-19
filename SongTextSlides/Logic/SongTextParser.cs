@@ -6,9 +6,19 @@ using System.Linq;
 
 namespace SongTextSlides.Logic
 {
+	/// <summary>
+	/// Class for parsing song texts
+	/// </summary>
 	public class SongTextParser
 	{
-		public bool TryParseSongText(string songText, out List<SongPart> parsedSongParts, out string errorMessage)
+		/// <summary>
+		/// Parses the given song text and returns a list of song parts
+		/// </summary>
+		/// <param name="songText">song text</param>
+		/// <param name="parsedSongParts">parsed song parts</param>
+		/// <param name="errorMessage">error message, if not successful</param>
+		/// <returns>true, if parsing was successful</returns>
+		public bool ParseSongText(string songText, out List<SongPart> parsedSongParts, out string errorMessage)
 		{
 			parsedSongParts = new List<SongPart>();
 			errorMessage = "";

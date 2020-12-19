@@ -1,45 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SongTextSlides.Models
 {
+	/// <summary>
+	/// Class for a song
+	/// </summary>
 	public class Song
 	{
-
+		/// <summary>
+		/// Song title
+		/// </summary>
 		public string Title { get; set; }
 
-		public string CopyrightInfos { get; set; }
-		
+		/// <summary>
+		/// Copyright information
+		/// </summary>
+		public string CopyrightInfo { get; set; }
+
+		/// <summary>
+		/// Song parts (lyrics and blank slides)
+		/// </summary>
 		public List<SongPart> SongParts { get; set; } = new List<SongPart>();
-
-		public string GetSongText()
-		{
-			StringBuilder sb = new StringBuilder();
-
-			foreach (SongPart part in SongParts)
-			{
-				if (part.Type == SongPartType.Lyrics)
-				{
-					foreach (string textLine in part.TextLines)
-					{
-						sb.AppendLine(textLine);
-					}
-				}
-				else if (part.Type == SongPartType.Blank)
-				{
-					sb.AppendLine(Constants.BlankSlidePlaceholder);
-				}
-				else
-				{
-					throw new NotImplementedException($"song part type {part.Type} not implemented!");
-				}
-
-				sb.AppendLine();
-			}
-
-			return sb.ToString();
-		}
-
 	}
 }
