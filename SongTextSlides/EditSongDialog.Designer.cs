@@ -38,16 +38,20 @@ namespace SongTextSlides
 			this.TextBoxSongText = new System.Windows.Forms.TextBox();
 			this.LabelSongText = new System.Windows.Forms.Label();
 			this.ButtonOk = new System.Windows.Forms.Button();
+			this.TextBoxCCLISongNumber = new System.Windows.Forms.TextBox();
+			this.LabelCCLISongNumber = new System.Windows.Forms.Label();
+			this.TextBoxCCLILicenseNumber = new System.Windows.Forms.TextBox();
+			this.LabelCCLILicenseNumber = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// ButtonCancel
 			// 
 			this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.ButtonCancel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ButtonCancel.Location = new System.Drawing.Point(528, 514);
+			this.ButtonCancel.Location = new System.Drawing.Point(528, 570);
 			this.ButtonCancel.Name = "ButtonCancel";
 			this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
-			this.ButtonCancel.TabIndex = 4;
+			this.ButtonCancel.TabIndex = 6;
 			this.ButtonCancel.Text = "Abbrechen";
 			this.ButtonCancel.UseVisualStyleBackColor = true;
 			// 
@@ -91,18 +95,18 @@ namespace SongTextSlides
 			// TextBoxSongText
 			// 
 			this.TextBoxSongText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.TextBoxSongText.Location = new System.Drawing.Point(15, 195);
+			this.TextBoxSongText.Location = new System.Drawing.Point(15, 223);
 			this.TextBoxSongText.Multiline = true;
 			this.TextBoxSongText.Name = "TextBoxSongText";
 			this.TextBoxSongText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.TextBoxSongText.Size = new System.Drawing.Size(588, 300);
-			this.TextBoxSongText.TabIndex = 2;
+			this.TextBoxSongText.Size = new System.Drawing.Size(588, 336);
+			this.TextBoxSongText.TabIndex = 4;
 			// 
 			// LabelSongText
 			// 
 			this.LabelSongText.AutoSize = true;
 			this.LabelSongText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.LabelSongText.Location = new System.Drawing.Point(12, 175);
+			this.LabelSongText.Location = new System.Drawing.Point(12, 203);
 			this.LabelSongText.Name = "LabelSongText";
 			this.LabelSongText.Size = new System.Drawing.Size(56, 17);
 			this.LabelSongText.TabIndex = 6;
@@ -111,13 +115,49 @@ namespace SongTextSlides
 			// ButtonOk
 			// 
 			this.ButtonOk.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ButtonOk.Location = new System.Drawing.Point(447, 514);
+			this.ButtonOk.Location = new System.Drawing.Point(414, 570);
 			this.ButtonOk.Name = "ButtonOk";
-			this.ButtonOk.Size = new System.Drawing.Size(75, 23);
-			this.ButtonOk.TabIndex = 3;
-			this.ButtonOk.Text = "OK";
+			this.ButtonOk.Size = new System.Drawing.Size(108, 23);
+			this.ButtonOk.TabIndex = 5;
+			this.ButtonOk.Text = "Folien einfügen";
 			this.ButtonOk.UseVisualStyleBackColor = true;
 			this.ButtonOk.Click += new System.EventHandler(this.ButtonOk_Click);
+			// 
+			// TextBoxCCLISongNumber
+			// 
+			this.TextBoxCCLISongNumber.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.TextBoxCCLISongNumber.Location = new System.Drawing.Point(129, 168);
+			this.TextBoxCCLISongNumber.Name = "TextBoxCCLISongNumber";
+			this.TextBoxCCLISongNumber.Size = new System.Drawing.Size(164, 23);
+			this.TextBoxCCLISongNumber.TabIndex = 2;
+			// 
+			// LabelCCLISongNumber
+			// 
+			this.LabelCCLISongNumber.AutoSize = true;
+			this.LabelCCLISongNumber.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.LabelCCLISongNumber.Location = new System.Drawing.Point(12, 170);
+			this.LabelCCLISongNumber.Name = "LabelCCLISongNumber";
+			this.LabelCCLISongNumber.Size = new System.Drawing.Size(113, 17);
+			this.LabelCCLISongNumber.TabIndex = 8;
+			this.LabelCCLISongNumber.Text = "CCLI-Liednummer:";
+			// 
+			// TextBoxCCLILicenseNumber
+			// 
+			this.TextBoxCCLILicenseNumber.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.TextBoxCCLILicenseNumber.Location = new System.Drawing.Point(439, 168);
+			this.TextBoxCCLILicenseNumber.Name = "TextBoxCCLILicenseNumber";
+			this.TextBoxCCLILicenseNumber.Size = new System.Drawing.Size(164, 23);
+			this.TextBoxCCLILicenseNumber.TabIndex = 3;
+			// 
+			// LabelCCLILicenseNumber
+			// 
+			this.LabelCCLILicenseNumber.AutoSize = true;
+			this.LabelCCLILicenseNumber.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.LabelCCLILicenseNumber.Location = new System.Drawing.Point(316, 171);
+			this.LabelCCLILicenseNumber.Name = "LabelCCLILicenseNumber";
+			this.LabelCCLILicenseNumber.Size = new System.Drawing.Size(124, 17);
+			this.LabelCCLILicenseNumber.TabIndex = 10;
+			this.LabelCCLILicenseNumber.Text = "CCLI-Lizenznummer:";
 			// 
 			// EditSongDialog
 			// 
@@ -125,7 +165,11 @@ namespace SongTextSlides
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.DarkGray;
 			this.CancelButton = this.ButtonCancel;
-			this.ClientSize = new System.Drawing.Size(617, 549);
+			this.ClientSize = new System.Drawing.Size(617, 605);
+			this.Controls.Add(this.TextBoxCCLILicenseNumber);
+			this.Controls.Add(this.LabelCCLILicenseNumber);
+			this.Controls.Add(this.TextBoxCCLISongNumber);
+			this.Controls.Add(this.LabelCCLISongNumber);
 			this.Controls.Add(this.ButtonOk);
 			this.Controls.Add(this.TextBoxSongText);
 			this.Controls.Add(this.LabelSongText);
@@ -140,7 +184,7 @@ namespace SongTextSlides
 			this.MinimizeBox = false;
 			this.Name = "EditSongDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Lied bearbeiten";
+			this.Text = "Neues Lied / Lied bearbeiten";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -156,5 +200,9 @@ namespace SongTextSlides
 		private System.Windows.Forms.TextBox TextBoxSongText;
 		private System.Windows.Forms.Label LabelSongText;
 		private System.Windows.Forms.Button ButtonOk;
+		private System.Windows.Forms.TextBox TextBoxCCLISongNumber;
+		private System.Windows.Forms.Label LabelCCLISongNumber;
+		private System.Windows.Forms.TextBox TextBoxCCLILicenseNumber;
+		private System.Windows.Forms.Label LabelCCLILicenseNumber;
 	}
 }

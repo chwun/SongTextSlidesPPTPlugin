@@ -2,6 +2,7 @@
 using Serilog;
 using SongTextSlides.Models;
 using System;
+using System.Text;
 
 namespace SongTextSlides.Logic
 {
@@ -141,7 +142,7 @@ namespace SongTextSlides.Logic
 
 			Slide slideTitle = presentation.Slides.AddSlide(newSlideNumber, layoutTitle);
 			slideTitle.Shapes.Placeholders[1].TextFrame.TextRange.Text = song.Title;
-			slideTitle.Shapes.Placeholders[2].TextFrame.TextRange.Text = song.CopyrightInfo;
+			slideTitle.Shapes.Placeholders[2].TextFrame.TextRange.Text = AssembleCopyrightBlock(song);
 		}
 
 		/// <summary>
@@ -168,6 +169,28 @@ namespace SongTextSlides.Logic
 
 				newSlideNumber++;
 			}
+		}
+
+		/// <summary>
+		/// Assembles copyright info, song number and license number to a single string
+		/// </summary>
+		/// <param name="song">song</param>
+		/// <returns>single string containing copyright info, song number an license number</returns>
+		private string AssembleCopyrightBlock(Song song)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(song.CopyrightInfo);
+
+			if (!string.IsNullOrWhiteSpace(song.CCLISongNumber))
+			{
+				sb.Append("CCLI-Liednummer: ");
+				sb.Append(song.CCLISongNumber);
+				sb.Append(" | ");
+				sb.Append("CCLI-Lizenznummer: ");
+				sb.Append(song.CCLILicenseNumber);
+			}
+
+			return sb.ToString();
 		}
 
 		#endregion private methods

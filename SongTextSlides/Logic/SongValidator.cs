@@ -14,7 +14,10 @@ namespace SongTextSlides.Logic
 	{
 		private readonly string title;
 		private readonly string copyrightInfo;
+		private readonly string ccliSongNumber;
+		private readonly string ccliLicenseNumber;
 		private readonly string text;
+
 		private List<string> textLines;
 
 		#region constructors
@@ -24,11 +27,15 @@ namespace SongTextSlides.Logic
 		/// </summary>
 		/// <param name="title">song title</param>
 		/// <param name="copyrightInfo">copyright information</param>
+		/// <param name="ccliSongNumber">CCLI song number (if available)</param>
+		/// <param name="ccliLicenseNumber">CCLI license number (if available)</param>
 		/// <param name="text">song text</param>
-		public SongValidator(string title, string copyrightInfo, string text)
+		public SongValidator(string title, string copyrightInfo, string ccliSongNumber, string ccliLicenseNumber, string text)
 		{
 			this.title = title;
 			this.copyrightInfo = copyrightInfo;
+			this.ccliSongNumber = ccliSongNumber;
+			this.ccliLicenseNumber = ccliLicenseNumber;
 			this.text = text;
 			InitTextLines();
 		}
@@ -46,7 +53,7 @@ namespace SongTextSlides.Logic
 		{
 			if (!InitTextLines())
 			{
-				errorMessage = "Interner Fehler beim Prüfen des Liedtextes";
+				errorMessage = "• Interner Fehler beim Prüfen des Liedtextes";
 				return false;
 			}
 
@@ -99,19 +106,25 @@ namespace SongTextSlides.Logic
 			if (string.IsNullOrWhiteSpace(title))
 			{
 				isValid = false;
-				sb.AppendLine("Liedtitel darf nicht leer sein");
+				sb.AppendLine("• Liedtitel darf nicht leer sein");
 			}
 
 			if (string.IsNullOrWhiteSpace(copyrightInfo))
 			{
 				isValid = false;
-				sb.AppendLine("Copyright-Informationen dürfen nicht leer sein");
+				sb.AppendLine("• Copyright-Informationen dürfen nicht leer sein");
+			}
+
+			if (!string.IsNullOrWhiteSpace(ccliSongNumber) && string.IsNullOrWhiteSpace(ccliLicenseNumber))
+			{
+				isValid = false;
+				sb.AppendLine("• Wenn eine CCLI-Liednummer eingetragen ist, muss auch die CCLI-Lizenznummer angegeben werden");
 			}
 
 			if (string.IsNullOrWhiteSpace(text))
 			{
 				isValid = false;
-				sb.AppendLine("Liedtext darf nicht leer sein");
+				sb.AppendLine("• Liedtext darf nicht leer sein");
 			}
 
 			return isValid;
@@ -159,7 +172,7 @@ namespace SongTextSlides.Logic
 				if (linesPerSlide > Constants.MaximumNumberOfTextLinesPerSlide)
 				{
 					isValid = false;
-					sb.AppendLine($"Zeile {i}: Pro Folie sind maximal {Constants.MaximumNumberOfTextLinesPerSlide} Textzeilen erlaubt");
+					sb.AppendLine($"• Zeile {i}: Pro Folie sind maximal {Constants.MaximumNumberOfTextLinesPerSlide} Textzeilen erlaubt");
 				}
 			}
 
@@ -187,7 +200,7 @@ namespace SongTextSlides.Logic
 					if (!string.IsNullOrWhiteSpace(prevLine) || !string.IsNullOrWhiteSpace(nextLine))
 					{
 						isValid = false;
-						sb.AppendLine($"Zeile {i + 1}: Platzhalter für leere Folien muss von Leerzeilen eingeschlossen sein");
+						sb.AppendLine($"• Zeile {i + 1}: Platzhalter für leere Folien muss von Leerzeilen eingeschlossen sein");
 					}
 				}
 			}

@@ -29,11 +29,13 @@ namespace SongTextSlides
 
 			if (editSong != null)
 			{
+				Text = "Lied bearbeiten";
 				song = editSong;
 				Log.Information("EditSongDialog: dialog opened for existing song {@song}", song);
 			}
 			else
 			{
+				Text = "Neues Lied";
 				song = new Song();
 				Log.Information("EditSongDialog: dialog opened for a new song");
 			}
@@ -69,6 +71,8 @@ namespace SongTextSlides
 		{
 			TextBoxSongTitle.Text = song.Title;
 			TextBoxSongCopyright.Text = song.CopyrightInfo;
+			TextBoxCCLISongNumber.Text = song.CCLISongNumber;
+			TextBoxCCLILicenseNumber.Text = song.CCLILicenseNumber;
 			TextBoxSongText.Text = SongTextSerializer.SerializeSongParts(song.SongParts);
 		}
 
@@ -113,6 +117,8 @@ namespace SongTextSlides
 		{
 			song.Title = TextBoxSongTitle.Text;
 			song.CopyrightInfo = TextBoxSongCopyright.Text;
+			song.CCLISongNumber = TextBoxCCLISongNumber.Text;
+			song.CCLILicenseNumber = TextBoxCCLILicenseNumber.Text;
 
 			SongTextParser parser = new SongTextParser();
 
@@ -132,7 +138,9 @@ namespace SongTextSlides
 		/// <returns>true, if successful</returns>
 		private bool ValidateSong(out string errorMessage)
 		{
-			SongValidator validator = new SongValidator(TextBoxSongTitle.Text, TextBoxSongCopyright.Text, TextBoxSongText.Text);
+			SongValidator validator = new SongValidator(TextBoxSongTitle.Text, TextBoxSongCopyright.Text,
+				TextBoxCCLISongNumber.Text, TextBoxCCLILicenseNumber.Text, TextBoxSongText.Text);
+
 			return validator.Validate(out errorMessage);
 		}
 
