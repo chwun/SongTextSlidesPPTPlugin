@@ -40,6 +40,7 @@ namespace SongTextSlides
 			this.tab2 = this.Factory.CreateRibbonTab();
 			this.group1 = this.Factory.CreateRibbonGroup();
 			this.ButtonNewSong = this.Factory.CreateRibbonButton();
+			this.ButtonOpenSongFile = this.Factory.CreateRibbonButton();
 			this.ButtonSelectSong = this.Factory.CreateRibbonButton();
 			this.group3 = this.Factory.CreateRibbonGroup();
 			this.ButtonSettings = this.Factory.CreateRibbonButton();
@@ -70,19 +71,30 @@ namespace SongTextSlides
 			// group1
 			// 
 			this.group1.Items.Add(this.ButtonNewSong);
+			this.group1.Items.Add(this.ButtonOpenSongFile);
 			this.group1.Items.Add(this.ButtonSelectSong);
-			this.group1.Label = "Liedtext";
+			this.group1.Label = "Lied einfügen";
 			this.group1.Name = "group1";
 			// 
 			// ButtonNewSong
 			// 
 			this.ButtonNewSong.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
 			this.ButtonNewSong.Image = ((System.Drawing.Image)(resources.GetObject("ButtonNewSong.Image")));
-			this.ButtonNewSong.Label = "Neues Lied";
+			this.ButtonNewSong.Label = "Neu";
 			this.ButtonNewSong.Name = "ButtonNewSong";
-			this.ButtonNewSong.ScreenTip = "Neues Lied hinzufügen";
+			this.ButtonNewSong.ScreenTip = "Neues Lied manuell hinzufügen";
 			this.ButtonNewSong.ShowImage = true;
 			this.ButtonNewSong.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonNewSong_Click);
+			// 
+			// ButtonOpenSongFile
+			// 
+			this.ButtonOpenSongFile.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+			this.ButtonOpenSongFile.Image = ((System.Drawing.Image)(resources.GetObject("ButtonOpenSongFile.Image")));
+			this.ButtonOpenSongFile.Label = "Aus Datei";
+			this.ButtonOpenSongFile.Name = "ButtonOpenSongFile";
+			this.ButtonOpenSongFile.ScreenTip = "Lied aus Datei hinzufügen";
+			this.ButtonOpenSongFile.ShowImage = true;
+			this.ButtonOpenSongFile.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonOpenSongFile_Click);
 			// 
 			// ButtonSelectSong
 			// 
@@ -93,6 +105,7 @@ namespace SongTextSlides
 			this.ButtonSelectSong.Name = "ButtonSelectSong";
 			this.ButtonSelectSong.ScreenTip = "Bestehendes Lied aus Liste auswählen";
 			this.ButtonSelectSong.ShowImage = true;
+			this.ButtonSelectSong.Visible = false;
 			this.ButtonSelectSong.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonSelectSong_Click);
 			// 
 			// group3
@@ -164,6 +177,7 @@ namespace SongTextSlides
 		internal Microsoft.Office.Tools.Ribbon.RibbonButton ButtonHelp;
 		internal Microsoft.Office.Tools.Ribbon.RibbonGroup group3;
 		internal Microsoft.Office.Tools.Ribbon.RibbonButton ButtonSettings;
+		internal Microsoft.Office.Tools.Ribbon.RibbonButton ButtonOpenSongFile;
 	}
 
 	partial class ThisRibbonCollection

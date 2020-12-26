@@ -195,6 +195,7 @@
       <DependentUpon>InfoDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\SlideCreation.cs" />
+    <Compile Include="Logic\SongFileImport.cs" />
     <Compile Include="Logic\SongTextSerializer.cs" />
     <Compile Include="Logic\SongTextParser.cs" />
     <Compile Include="Logic\SongValidator.cs" />

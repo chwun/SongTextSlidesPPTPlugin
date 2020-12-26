@@ -70,7 +70,7 @@ namespace SongTextSlides
 		private void InitFields()
 		{
 			TextBoxSongTitle.Text = song.Title;
-			TextBoxSongCopyright.Text = song.CopyrightInfo;
+			TextBoxSongCopyright.Text = song.CopyrightInfo.Trim(new[] { '\r', '\n' });
 			TextBoxCCLISongNumber.Text = song.CCLISongNumber;
 			TextBoxCCLILicenseNumber.Text = song.CCLILicenseNumber;
 			TextBoxSongText.Text = SongTextSerializer.SerializeSongParts(song.SongParts);
@@ -83,14 +83,14 @@ namespace SongTextSlides
 		{
 			if (!ValidateSong(out string validationErrorMessage))
 			{
-				Log.Information("EditSongDialog.ConfirmDialog: ValidateInput() failed (error message: {validationErrorMessage}, song: {@song})", validationErrorMessage, song);
-				MessageBox.Show(validationErrorMessage, "Fehler beim Prüfen der Daten", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				Log.Information("EditSongDialog.ConfirmDialog: ValidateInput() failed (error message: \"{validationErrorMessage}\", song: {@song})", validationErrorMessage, song);
+				MessageBox.Show(validationErrorMessage, "Fehler beim Prüfen der Daten", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
 			if (!ApplyFields(out string parsingErrorMessage))
 			{
-				Log.Information("EditSongDialog.ConfirmDialog: AcceptFields failed (error message: {parsingErrorMessage}, song: {@song})", parsingErrorMessage, song);
+				Log.Information("EditSongDialog.ConfirmDialog: ApplyFields failed (error message: \"{parsingErrorMessage}\", song: {@song})", parsingErrorMessage, song);
 				MessageBox.Show(parsingErrorMessage, "Interner Fehler beim Einlesen der Daten", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
@@ -99,7 +99,7 @@ namespace SongTextSlides
 
 			if (!CreateSlides(out string slideCreationErrorMessage))
 			{
-				Log.Information("EditSongDialog.ConfirmDialog: CreateSlides failed (error message: {slideCreationErrorMessage}, song: {@song})", slideCreationErrorMessage, song);
+				Log.Information("EditSongDialog.ConfirmDialog: CreateSlides failed (error message: \"{slideCreationErrorMessage}\", song: {@song})", slideCreationErrorMessage, song);
 				MessageBox.Show(slideCreationErrorMessage, "Fehler beim Erzeugen der Folien", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
@@ -116,7 +116,7 @@ namespace SongTextSlides
 		private bool ApplyFields(out string errorMessage)
 		{
 			song.Title = TextBoxSongTitle.Text;
-			song.CopyrightInfo = TextBoxSongCopyright.Text;
+			song.CopyrightInfo = TextBoxSongCopyright.Text.Trim(new[] { '\r', '\n' });
 			song.CCLISongNumber = TextBoxCCLISongNumber.Text;
 			song.CCLILicenseNumber = TextBoxCCLILicenseNumber.Text;
 

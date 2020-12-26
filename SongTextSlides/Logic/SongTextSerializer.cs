@@ -39,7 +39,9 @@ namespace SongTextSlides.Logic
 				sb.AppendLine();
 			}
 
-			return sb.ToString();
+			string result = sb.ToString().Trim(new[] { '\r', '\n' });
+
+			return result;
 		}
 	}
 }

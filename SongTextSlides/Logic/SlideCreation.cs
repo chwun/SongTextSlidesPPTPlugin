@@ -119,8 +119,10 @@ namespace SongTextSlides.Logic
 			{
 				Log.Debug("SlideCreation.AddSlides(): adding slides for song {@song}", song);
 
+				AddBlankSlide(layoutBlank);
 				AddTitleSlide(song, layoutTitle);
 				AddSongPartSlides(song, layoutLyrics, layoutBlank);
+				AddBlankSlide(layoutBlank);
 
 				return true;
 			}
@@ -129,6 +131,16 @@ namespace SongTextSlides.Logic
 				Log.Error(e, "SlideCreation.AddSlides(): error adding slides for song {@song}", song);
 				return false;
 			}
+		}
+
+		/// <summary>
+		/// Adds a blank slide
+		/// </summary>
+		/// <param name="layoutBlank">layout for blank slide</param>
+		private void AddBlankSlide(CustomLayout layoutBlank)
+		{
+			int newSlideNumber = presentation.Slides.Count + 1; // no index, starts at 1
+			presentation.Slides.AddSlide(newSlideNumber, layoutBlank);
 		}
 
 		/// <summary>

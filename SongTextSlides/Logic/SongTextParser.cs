@@ -71,7 +71,7 @@ namespace SongTextSlides.Logic
 			}
 			catch (Exception e)
 			{
-				Log.Error(e, "SongTextParser.TryParseSongText(): error parsing song text {songText}", songText);
+				Log.Error(e, "SongTextParser.ParseSongText(): error parsing song text {songText}", songText);
 
 				parsedSongParts.Clear();
 				errorMessage = "Interner Fehler beim Einlesen des Liedtextes";
