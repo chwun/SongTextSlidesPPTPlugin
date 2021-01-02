@@ -182,6 +182,7 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Configuration\Settings.cs" />
     <Compile Include="EditSongDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,9 +223,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SettingsDialog.resx">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SongTextSlidesRibbon.resx">
       <DependentUpon>SongTextSlidesRibbon.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -233,6 +238,13 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsDialog.Designer.cs">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="SongTextSlidesRibbon.cs">
       <SubType>Component</SubType>

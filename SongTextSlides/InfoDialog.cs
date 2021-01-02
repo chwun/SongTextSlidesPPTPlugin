@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Serilog;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace SongTextSlides
@@ -20,6 +21,8 @@ namespace SongTextSlides
 			LabelVersion.Text = "Version: " + PluginInfo.Version;
 			LabelCopyright.Text = PluginInfo.Copyright;
 			LinkLabelWeb.Text = PluginInfo.WebUrl;
+
+			Log.Information("InfoDialog: dialog opened");
 		}
 
 		/// <summary>

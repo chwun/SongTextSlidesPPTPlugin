@@ -116,11 +116,11 @@ namespace SongTextSlides
 			// ButtonSettings
 			// 
 			this.ButtonSettings.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-			this.ButtonSettings.Enabled = false;
 			this.ButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("ButtonSettings.Image")));
 			this.ButtonSettings.Label = "Einstellungen";
 			this.ButtonSettings.Name = "ButtonSettings";
 			this.ButtonSettings.ShowImage = true;
+			this.ButtonSettings.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonSettings_Click);
 			// 
 			// group2
 			// 

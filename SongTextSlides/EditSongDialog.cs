@@ -25,18 +25,19 @@ namespace SongTextSlides
 		{
 			InitializeComponent();
 
-			InitLogging();
-
 			if (editSong != null)
 			{
 				Text = "Lied bearbeiten";
 				song = editSong;
+
 				Log.Information("EditSongDialog: dialog opened for existing song {@song}", song);
 			}
 			else
 			{
 				Text = "Neues Lied";
 				song = new Song();
+				song.CCLILicenseNumber = InitCCLILicenseNumber();
+
 				Log.Information("EditSongDialog: dialog opened for a new song");
 			}
 
@@ -47,22 +48,7 @@ namespace SongTextSlides
 
 		#region private methods
 
-		/// <summary>
-		/// Initializes logger
-		/// </summary>
-		private void InitLogging()
-		{
-			try
-			{
-				string logFile = Path.Combine(Path.GetTempPath(), "songtextslides.log");
-				Log.Logger = new LoggerConfiguration().MinimumLevel.Information().WriteTo.File(logFile).CreateLogger();
 
-				FormClosed += (s, e) => Log.CloseAndFlush();
-			}
-			catch
-			{
-			}
-		}
 
 		/// <summary>
 		/// Initializes dialog fields
@@ -77,29 +63,43 @@ namespace SongTextSlides
 		}
 
 		/// <summary>
+		/// Initializes the field "CCLI license number" from user settings (if set)
+		/// </summary>
+		/// <returns>CCLI license number from user settings (if set)</returns>
+		private string InitCCLILicenseNumber()
+		{
+			if (string.IsNullOrWhiteSpace(song.CCLILicenseNumber) && !string.IsNullOrWhiteSpace(Properties.Settings.Default.CCLILicenseNumber))
+			{
+				return Properties.Settings.Default.CCLILicenseNumber;
+			}
+
+			return "";
+		}
+
+		/// <summary>
 		/// Confirms the dialog (OK button)
 		/// </summary>
 		private void ConfirmDialog()
 		{
 			if (!ValidateSong(out string validationErrorMessage))
 			{
-				Log.Information("EditSongDialog.ConfirmDialog: ValidateInput() failed (error message: \"{validationErrorMessage}\", song: {@song})", validationErrorMessage, song);
+				Log.Information("EditSongDialog.ConfirmDialog(): ValidateInput() failed (error message: \"{validationErrorMessage}\", song: {@song})", validationErrorMessage, song);
 				MessageBox.Show(validationErrorMessage, "Fehler beim Prüfen der Daten", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
 			if (!ApplyFields(out string parsingErrorMessage))
 			{
-				Log.Information("EditSongDialog.ConfirmDialog: ApplyFields failed (error message: \"{parsingErrorMessage}\", song: {@song})", parsingErrorMessage, song);
+				Log.Information("EditSongDialog.ConfirmDialog(): ApplyFields failed (error message: \"{parsingErrorMessage}\", song: {@song})", parsingErrorMessage, song);
 				MessageBox.Show(parsingErrorMessage, "Interner Fehler beim Einlesen der Daten", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
-			// TODO: Abfrage, ob Folien eingefügt werden sollen / oder nur zur Liste hinzu
+			SaveCCLILicenseNumber();
 
 			if (!CreateSlides(out string slideCreationErrorMessage))
 			{
-				Log.Information("EditSongDialog.ConfirmDialog: CreateSlides failed (error message: \"{slideCreationErrorMessage}\", song: {@song})", slideCreationErrorMessage, song);
+				Log.Information("EditSongDialog.ConfirmDialog(): CreateSlides failed (error message: \"{slideCreationErrorMessage}\", song: {@song})", slideCreationErrorMessage, song);
 				MessageBox.Show(slideCreationErrorMessage, "Fehler beim Erzeugen der Folien", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
@@ -142,6 +142,23 @@ namespace SongTextSlides
 				TextBoxCCLISongNumber.Text, TextBoxCCLILicenseNumber.Text, TextBoxSongText.Text);
 
 			return validator.Validate(out errorMessage);
+		}
+
+		/// <summary>
+		/// Saves the CCLI license number to user settings if wanted (and not already saved)
+		/// </summary>
+		private void SaveCCLILicenseNumber()
+		{
+			if (!string.IsNullOrWhiteSpace(song.CCLILicenseNumber) && string.IsNullOrWhiteSpace(Properties.Settings.Default.CCLILicenseNumber))
+			{
+				if (MessageBox.Show("Soll die CCLI-Lizenznummer gespeichert werden?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+				{
+					Properties.Settings.Default.CCLILicenseNumber = song.CCLILicenseNumber;
+					Properties.Settings.Default.Save();
+
+					Log.Information("EditSongDialog.SaveCCLILicenseNumber(): saved CCLI license number \"{licenseNumber}\" to user settings ", song.CCLILicenseNumber);
+				}
+			}
 		}
 
 		/// <summary>

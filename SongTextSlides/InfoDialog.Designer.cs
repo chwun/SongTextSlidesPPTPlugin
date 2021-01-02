@@ -43,7 +43,7 @@ namespace SongTextSlides
 			this.ButtonOk.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.ButtonOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.ButtonOk.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ButtonOk.Location = new System.Drawing.Point(139, 141);
+			this.ButtonOk.Location = new System.Drawing.Point(261, 141);
 			this.ButtonOk.Name = "ButtonOk";
 			this.ButtonOk.Size = new System.Drawing.Size(75, 23);
 			this.ButtonOk.TabIndex = 4;
@@ -121,6 +121,8 @@ namespace SongTextSlides
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "InfoDialog";
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Info";
 			this.ResumeLayout(false);

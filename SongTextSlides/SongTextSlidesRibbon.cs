@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Tools.Ribbon;
+using Serilog;
 using SongTextSlides.Logic;
 using SongTextSlides.Models;
 using System.IO;
@@ -12,6 +13,7 @@ namespace SongTextSlides
 
 		private void SongTextSlidesRibbon_Load(object sender, RibbonUIEventArgs e)
 		{
+			InitLogging();
 		}
 
 		private void ButtonNewSong_Click(object sender, RibbonControlEventArgs e)
@@ -55,9 +57,31 @@ namespace SongTextSlides
 			ShowSongDialog(importedSong);
 		}
 
+		private void ButtonSettings_Click(object sender, RibbonControlEventArgs e)
+		{
+			ShowSettingsDialog();
+		}
+
 		#endregion event handlers
 
 		#region private methods
+
+		/// <summary>
+		/// Initializes logger
+		/// </summary>
+		private void InitLogging()
+		{
+			try
+			{
+				string logFile = Path.Combine(Path.GetTempPath(), "songtextslides.log");
+				Log.Logger = new LoggerConfiguration().MinimumLevel.Information().WriteTo.File(logFile).CreateLogger();
+
+				Close += (s, e) => Log.CloseAndFlush();
+			}
+			catch
+			{
+			}
+		}
 
 		/// <summary>
 		/// Shows edit dialog for the given song as modal dialog
@@ -89,6 +113,15 @@ namespace SongTextSlides
 					return string.Empty;
 				}
 			}
+		}
+
+		/// <summary>
+		/// Shows the settings dialog as modal dialog
+		/// </summary>
+		private void ShowSettingsDialog()
+		{
+			SettingsDialog settingsDialog = new SettingsDialog();
+			settingsDialog.ShowDialog();
 		}
 
 		#endregion private methods

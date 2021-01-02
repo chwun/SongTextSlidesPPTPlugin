@@ -183,6 +183,8 @@ namespace SongTextSlides
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "EditSongDialog";
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Neues Lied / Lied bearbeiten";
 			this.ResumeLayout(false);
