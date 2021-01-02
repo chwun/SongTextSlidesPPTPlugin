@@ -70,7 +70,7 @@ namespace SongTextSlides
 		private void InitFields()
 		{
 			TextBoxSongTitle.Text = song.Title;
-			TextBoxSongCopyright.Text = song.CopyrightInfo.Trim(new[] { '\r', '\n' });
+			TextBoxSongCopyright.Text = song.CopyrightInfo?.Trim(new[] { '\r', '\n' });
 			TextBoxCCLISongNumber.Text = song.CCLISongNumber;
 			TextBoxCCLILicenseNumber.Text = song.CCLILicenseNumber;
 			TextBoxSongText.Text = SongTextSerializer.SerializeSongParts(song.SongParts);
@@ -116,7 +116,7 @@ namespace SongTextSlides
 		private bool ApplyFields(out string errorMessage)
 		{
 			song.Title = TextBoxSongTitle.Text;
-			song.CopyrightInfo = TextBoxSongCopyright.Text.Trim(new[] { '\r', '\n' });
+			song.CopyrightInfo = TextBoxSongCopyright.Text?.Trim(new[] { '\r', '\n' });
 			song.CCLISongNumber = TextBoxCCLISongNumber.Text;
 			song.CCLILicenseNumber = TextBoxCCLILicenseNumber.Text;
 
