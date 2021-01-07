@@ -55,8 +55,10 @@ namespace SongTextSlides
 		{
 			settings = new Settings()
 			{
-				SongFilesDirectory = Properties.Settings.Default.SongFilesDirectory,
-				CCLILicenseNumber = Properties.Settings.Default.CCLILicenseNumber
+				CCLILicenseNumber = Properties.Settings.Default.CCLILicenseNumber,
+				SaveCCLILicenseNumber = Properties.Settings.Default.SaveCCLILicenseNumber,
+				UseSavedCCLILicenseNumber = Properties.Settings.Default.UseSavedCCLILicenseNumber,
+				SongFilesDirectory = Properties.Settings.Default.SongFilesDirectory
 			};
 		}
 
@@ -65,8 +67,10 @@ namespace SongTextSlides
 		/// </summary>
 		private void InitFields()
 		{
-			TextBoxSongFilesDirectory.Text = settings.SongFilesDirectory;
 			TextBoxCCLILicenseNumber.Text = settings.CCLILicenseNumber;
+			CheckBoxSaveCCLILicenseNumber.Checked = settings.SaveCCLILicenseNumber;
+			CheckBoxUseSavedCCLILicenseNumber.Checked = settings.UseSavedCCLILicenseNumber;
+			TextBoxSongFilesDirectory.Text = settings.SongFilesDirectory;
 		}
 
 		/// <summary>
@@ -75,6 +79,8 @@ namespace SongTextSlides
 		private void ApplyFields()
 		{
 			settings.CCLILicenseNumber = TextBoxCCLILicenseNumber.Text;
+			settings.SaveCCLILicenseNumber = CheckBoxSaveCCLILicenseNumber.Checked;
+			settings.UseSavedCCLILicenseNumber = CheckBoxUseSavedCCLILicenseNumber.Checked;
 		}
 
 		/// <summary>
@@ -82,8 +88,10 @@ namespace SongTextSlides
 		/// </summary>
 		private void SaveSettings()
 		{
-			Properties.Settings.Default.SongFilesDirectory = settings.SongFilesDirectory;
 			Properties.Settings.Default.CCLILicenseNumber = settings.CCLILicenseNumber;
+			Properties.Settings.Default.SaveCCLILicenseNumber = settings.SaveCCLILicenseNumber;
+			Properties.Settings.Default.UseSavedCCLILicenseNumber = settings.UseSavedCCLILicenseNumber;
+			Properties.Settings.Default.SongFilesDirectory = settings.SongFilesDirectory;
 
 			Log.Information("SettingsDialog.SaveSettings(): saved new user settings {@settings}", settings);
 

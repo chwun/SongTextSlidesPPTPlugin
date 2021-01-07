@@ -46,5 +46,29 @@ namespace SongTextSlides.Properties {
                 this["CCLILicenseNumber"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SaveCCLILicenseNumber {
+            get {
+                return ((bool)(this["SaveCCLILicenseNumber"]));
+            }
+            set {
+                this["SaveCCLILicenseNumber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseSavedCCLILicenseNumber {
+            get {
+                return ((bool)(this["UseSavedCCLILicenseNumber"]));
+            }
+            set {
+                this["UseSavedCCLILicenseNumber"] = value;
+            }
+        }
     }
 }

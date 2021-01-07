@@ -2,7 +2,6 @@
 using SongTextSlides.Logic;
 using SongTextSlides.Models;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 
 namespace SongTextSlides
@@ -48,8 +47,6 @@ namespace SongTextSlides
 
 		#region private methods
 
-
-
 		/// <summary>
 		/// Initializes dialog fields
 		/// </summary>
@@ -68,7 +65,9 @@ namespace SongTextSlides
 		/// <returns>CCLI license number from user settings (if set)</returns>
 		private string InitCCLILicenseNumber()
 		{
-			if (string.IsNullOrWhiteSpace(song.CCLILicenseNumber) && !string.IsNullOrWhiteSpace(Properties.Settings.Default.CCLILicenseNumber))
+			if (Properties.Settings.Default.UseSavedCCLILicenseNumber
+				&& string.IsNullOrWhiteSpace(song.CCLILicenseNumber)
+				&& !string.IsNullOrWhiteSpace(Properties.Settings.Default.CCLILicenseNumber))
 			{
 				return Properties.Settings.Default.CCLILicenseNumber;
 			}
@@ -149,7 +148,9 @@ namespace SongTextSlides
 		/// </summary>
 		private void SaveCCLILicenseNumber()
 		{
-			if (!string.IsNullOrWhiteSpace(song.CCLILicenseNumber) && string.IsNullOrWhiteSpace(Properties.Settings.Default.CCLILicenseNumber))
+			if (Properties.Settings.Default.SaveCCLILicenseNumber
+				&& !string.IsNullOrWhiteSpace(song.CCLILicenseNumber)
+				&& string.IsNullOrWhiteSpace(Properties.Settings.Default.CCLILicenseNumber))
 			{
 				if (MessageBox.Show("Soll die CCLI-Lizenznummer gespeichert werden?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				{
